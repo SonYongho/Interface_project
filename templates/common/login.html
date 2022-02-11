@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %}
+<div class="login-form my-5 border rounded shadow-sm">
+  <h3 class="mb-5"><i class="fas fa-sign-in-alt"></i>&nbsp; 로그인</h3>
+  <form method="post" class="post-form" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    <!-- 로그인 성공 후 이동되는 URL -->
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% include "error/form_error.html" %}
+    <div class="form-group">
+      <label for="username"><i class="far fa-check-circle"></i>&nbsp; 사용자ID</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        placeholder="사용자 ID를 입력하세요."
+        id="username"
+        value="{{ form.username.value|default_if_none:'' }}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password"><i class="far fa-check-circle"></i>&nbsp; 비밀번호</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="비밀번호를 입력하세요."
+        id="password"
+        value="{{ form.password.value|default_if_none:'' }}"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">로그인</button>
+    <a href="{% url 'users:signup' %}" class="btn btn-primary">회원가입</a>
+  </form>
+</div>
+{% endblock %}
