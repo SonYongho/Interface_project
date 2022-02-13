@@ -6,7 +6,7 @@ from django.utils import timezone
 from ..forms import AnswerForm
 from ..models import Question, Answer
 
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def answer_create(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if request.method == "POST":
@@ -35,7 +35,7 @@ def answer_create(request, question_id):
 
 
 
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def answer_modify(request, answer_id):
     # 답변 수정
     answer = get_object_or_404(Answer, pk=answer_id)
@@ -57,7 +57,7 @@ def answer_modify(request, answer_id):
     context = {'answer': answer, 'form': form}
     return render(request, 'board/answer_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def answer_delete(request, answer_id):
     answer = get_object_or_404(Answer, pk=answer_id)
     if request.user != answer.author:

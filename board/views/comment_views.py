@@ -7,7 +7,7 @@ from ..forms import CommentForm
 from ..models import Question, Answer, Comment
 
 # 질문에 대한 댓글 생성
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def comment_create_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if request.method == "POST":
@@ -25,7 +25,7 @@ def comment_create_question(request, question_id):
     return render(request, 'board/comment_form.html', context)
 
 # 질문 답변 수정
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def comment_modify_question(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
@@ -44,7 +44,7 @@ def comment_modify_question(request, comment_id):
     context = {'form': form}
     return render(request, 'board/comment_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def comment_delete_question(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
@@ -56,7 +56,7 @@ def comment_delete_question(request, comment_id):
 
 
 # 답글에 대한 댓글 생성
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def comment_create_answer(request, answer_id):
     answer = get_object_or_404(Answer, pk=answer_id)
     if request.method == "POST":
@@ -73,7 +73,7 @@ def comment_create_answer(request, answer_id):
     context = {'form': form}
     return render(request, 'board/comment_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def comment_modify_answer(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
@@ -94,7 +94,7 @@ def comment_modify_answer(request, comment_id):
     return render(request, 'board/comment_form.html', context)
 
 
-@login_required(login_url='common:login')
+@login_required(login_url='users:login')
 def comment_delete_answer(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
