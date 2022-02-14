@@ -33,7 +33,7 @@ def signup(request):
 #     model = User
 #     template_name = 'common/profile.html'
 
-@login_required
+@login_required(login_url='users:login')
 def profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     context = {"profile_user": user}
@@ -88,6 +88,10 @@ class ProfileUpdateView(View):
             profile.save()
         
         return redirect('users:profile', pk=request.user.pk)
+
+def scheduler(request):
+    return render(request, 'common/scheduler.html')
+
 
 
 # @login_required
