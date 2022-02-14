@@ -6,15 +6,15 @@
         <tr class="thead-dark">
           <th style="width: 60px">USER</th>
           <th style="width: 120px">EMAIL</th>
-          <th style="width: 120px">PHONE</th>
+          <th style="width: 120px">ADDRESS</th>
         </tr>
       </thead>
       <tbody>
         {% for username in allusers %}
         <tr>
-          <td>{{ username }}</td>
+          <td><a href="{% url 'users:profile' username.pk %}">{{ username }}</a></td>
           <td>{{ username.email }}</td>
-          <td>{{ username.profile.phone }}</td>
+          <td>{{ username.profile.address }}</td>
         </tr>
         {% endfor %}
       </tbody>
