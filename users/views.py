@@ -92,6 +92,10 @@ class ProfileUpdateView(View):
 def scheduler(request):
     return render(request, 'common/scheduler.html')
 
+def member(request):
+    return render(request, 'common/member.html')
+
+
 
 
 # @login_required

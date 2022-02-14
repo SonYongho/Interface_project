@@ -28,6 +28,10 @@ input[type="submit"] {
   width: 30px;
 }
 
+.avata-default {
+  width: 15px;
+}
+
 .comment {
   border-top: dotted 1px #ddd;
   font-size: 0.7em;
@@ -5244,6 +5248,7 @@ fieldset:disabled .btn {
   padding: 0 0;
   margin-bottom: 1rem;
   list-style: none;
+  background-color: white;
 }
 
 .breadcrumb-item + .breadcrumb-item {
