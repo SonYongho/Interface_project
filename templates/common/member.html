@@ -4,37 +4,21 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr class="thead-dark">
-          <th style="width: 60px">User</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th style="width: 120px">가입일시</th>
+          <th style="width: 60px">USER</th>
+          <th style="width: 120px">EMAIL</th>
+          <th style="width: 120px">PHONE</th>
         </tr>
       </thead>
       <tbody>
-        {% if question_list %} {% for question in question_list %}
+        {% for username in allusers %}
         <tr>
-          <td>
-            <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 +1-->
-            {{ question.id }}
-          </td>
-          <td>
-            <a href="{% url 'board:detail' question.id %}"> {{ question.subject }} </a>
-            {% if question.answer_set.count > 0 %}
-            <span class="badge badge-pill badge-primary"> {{ question.answer_set.count }}</span>
-            {% endif %}
-          </td>
-          <td>{{ question.author.username}}</td>
-          <td>{{ question.create_date | date:'Y-m-d' }}</td>
-          <!-- H:i:s 시간-->
+          <td>{{ username }}</td>
+          <td>{{ username.email }}</td>
+          <td>{{ username.profile.phone }}</td>
         </tr>
-        {% endfor %} {% else %}
-        <tr>
-          <td colspan="3">질문이 없습니다.</td>
-        </tr>
-        {% endif %}
+        {% endfor %}
       </tbody>
     </table>
-
-    {% endblock %}
   </div>
 </div>
+{% endblock %}

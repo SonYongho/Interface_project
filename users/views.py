@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.views import View
 from .forms import UserForm, ProfileForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, get_user_model
 
 # Create your views here.
 def signup(request):
@@ -93,7 +93,10 @@ def scheduler(request):
     return render(request, 'common/scheduler.html')
 
 def member(request):
-    return render(request, 'common/member.html')
+    all_users= get_user_model().objects.all()
+    context= {'allusers': all_users}
+         
+    return render(request, 'common/member.html', context)
 
 
 
