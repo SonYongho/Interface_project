@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from users.forms import UserForm
-from django.contrib.auth.models import User
+from .models import User
+# from django.contrib.auth.models import User
 # from django.views.generic.detail import DetailView
 from django.views import View
 from .forms import UserForm, ProfileForm
@@ -98,7 +99,17 @@ def member(request):
          
     return render(request, 'common/member.html', context)
 
-
+@login_required
+def follow(request, username):
+    user = request.user
+    follow_user = get_object_or_404(User, username=username)
+    if user in follow_user.followers.all():
+        user.followings.remove(follow_user)
+        # follow_user.followers.remove(user)
+    else:
+        user.followings.add(follow_user)
+        # follow_user.followers.add(user)
+    return redirect('users:profile', pk=follow_user.pk)
 
 
 # @login_required

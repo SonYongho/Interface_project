@@ -29,7 +29,17 @@
                 <h4>{{profile_user.username}}</h4>
                 <p class="text-secondary mb-1">{{profile_user.email}}</p>
                 <p class="text-muted font-size-sm">{{profile_user.profile.address}}</p>
-                <button class="btn btn-primary">Follow</button>
+                <!-- 팔로우 버튼 start-->
+                {% if user.is_authenticated %} {% if profile_user.username != user.username %} {% if user in profile_user.followers.all %}
+                <a href="{% url 'users:follow' profile_user.username %}">
+                  <button class="btn btn-outline-info">언팔로우</button>
+                </a>
+                {% else %}
+                <a href="{% url 'users:follow' profile_user.username %}">
+                  <button class="btn btn-info">팔로우</button>
+                </a>
+                {% endif %} {% endif %} {% endif %}
+                <!-- 팔로우 버튼 end-->
               </div>
             </div>
           </div>
@@ -160,9 +170,11 @@
             </div>
             <hr />
             <div class="row">
+              {% if profile_user.username == user.username %}
               <div class="col-sm-12">
                 <a class="btn btn-info" href="{% url 'users:profile_update' %}">Edit</a>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -233,8 +245,8 @@
           <div class="col-sm-6 mb-3">
             <div class="card h-100">
               <div class="card-body">
-                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Team</i></h6>
-                <!-- 팀원 표시 -->
+                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">following</i></h6>
+                <!-- 팔로우 표시 -->
               </div>
             </div>
           </div>

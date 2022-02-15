@@ -1,6 +1,6 @@
 from sched import scheduler
 from django.urls import path, re_path
-from .views import signup, profile, ProfileUpdateView, scheduler, member
+from .views import signup, profile, ProfileUpdateView, scheduler, member, follow
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from board.views import base_views
@@ -16,4 +16,5 @@ urlpatterns = [
     path('scheduler/', scheduler, name='scheduler'),
     re_path(r'^profile/(?P<pk>[0-9]+)/$', profile, name='profile'),
     re_path(r'^profile_update/$', login_required(ProfileUpdateView.as_view()), name='profile_update'),
+    path('<str:username>/follow/', follow, name="follow"),
 ]
