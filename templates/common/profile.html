@@ -188,7 +188,7 @@
                 {% if user.followings.all %}
                 <ul class="list-group">
                   {% for user in profile_user.followings.all %}
-                  <li class="list-group-item">{{user.username}}</li>
+                  <li class="list-group-item"><a href="{% url 'users:profile' user.pk %}">{{user.username}}</a></li>
                   {% endfor %}
                 </ul>
                 {% endif %}
@@ -203,7 +203,7 @@
                 {% if user.followers.all %}
                 <ul class="list-group">
                   {% for user in profile_user.followers.all %}
-                  <li class="list-group-item">{{user.username}}</li>
+                  <li class="list-group-item"><a href="{% url 'users:profile' user.pk %}">{{user.username}}</a></li>
                   {% endfor %}
                 </ul>
                 {% endif %}
