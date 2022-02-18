@@ -13,7 +13,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', signup, name='signup'),
     path('member/', member, name='member'),
-    path('scheduler/', scheduler, name='scheduler'),
     re_path(r'^profile/(?P<pk>[0-9]+)/$', profile, name='profile'),
     re_path(r'^profile_update/$', login_required(ProfileUpdateView.as_view()), name='profile_update'),
     path('<str:username>/follow/', follow, name="follow"),

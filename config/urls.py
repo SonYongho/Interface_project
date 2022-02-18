@@ -10,4 +10,5 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('board/', include('board.urls')),
     path('', base_views.index, name='index'), # '/' 에 해당되는 path
+    path('cal/', include('cal.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
