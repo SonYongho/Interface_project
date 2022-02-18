@@ -5,6 +5,7 @@ from django.views import generic
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .utils import Calendar
@@ -46,6 +47,7 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
+@login_required(login_url='users:login')
 def event(request, event_id=None):
     instance = Event()
     if event_id:
