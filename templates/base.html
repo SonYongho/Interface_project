@@ -23,8 +23,11 @@
   <body class="sb-nav-fixed">
     {% include "navbar.html" %}
     <div id="layoutSidenav_content">
-      <main>{% block content %} {% endblock %}</main>
-      <footer class="py-4 bg-light mt-auto footer">
+      <div id="body-content">
+        <main>{% block content %} {% endblock %}</main>
+      </div>
+
+      <footer class="mt-5 py-4 bg-light">
         <div class="container-fluid px-4">
           <div class="d-flex align-items-center justify-content-between small">
             <div class="text-muted">Copyright &copy; reated by NongDamGom. All right Reserved</div>
