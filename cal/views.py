@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, date
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
@@ -47,16 +47,60 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
-@login_required(login_url='users:login')
-def event(request, event_id=None):
-    instance = Event()
-    if event_id:
-        instance = get_object_or_404(Event, pk=event_id)
-    else:
-        instance = Event()
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    context = {'event' : event}
+    return render(request, 'cal/event_detail.html', context)
 
-    form = EventForm(request.POST or None, instance=instance)
-    if request.POST and form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('cal:calendar'))
-    return render(request, 'cal/event.html', {'form': form})
+
+@login_required(login_url='users:login')
+def event_create(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False) # 모델에 저장
+            event.author = request.user
+            event.save() # DB에 저장
+            return redirect('cal:calendar')
+    # get
+    else:
+        form = EventForm()
+    
+    context = {'form': form}
+    return render(request, 'cal/event_form.html', context)
+
+@login_required(login_url='users:login')
+def event_modify(request, event_id):
+    # 수정
+    event = get_object_or_404(Event, pk=event_id)
+    if request.method == "POST":
+        # 질문 수정을 위해 값 덮어쓰기
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.author = request.user
+            event.save()
+            return redirect('cal:detail', event_id=event.id)
+    else:
+        # 질문 수정 화면에 기존 제목, 내용 반영
+        form = EventForm(instance=event)
+        context = {'form': form}
+        return render(request, 'cal/event_form.html', context)
+
+# @login_required(login_url='users:login')
+# def event(request, event_id=None):
+#     instance = Event()
+#     if event_id:
+#         instance = get_object_or_404(Event, pk=event_id)
+#     else:
+#         instance = Event()
+
+#     form = EventForm(request.POST or None, instance=instance)
+#     if request.POST and form.is_valid():
+#         event_form = form.save(commit=False)
+#         event_form.author = request.user
+#         event_form.save()
+#         return HttpResponseRedirect(reverse('cal:calendar'))
+    
+#     context = {'form': form}
+#     return render(request, 'cal/event.html', context)

@@ -1,0 +1,16 @@
+{% extends 'cal/cal_base.html' %} {% block title %} Event {% endblock %} {% block content_side %}
+
+<div class="container my-3">
+  <div>user : {{ event.author.username }}</div>
+  <h2 class="border-bottom py-2">{{ event.title }}</h2>
+  <div class="card my-3">
+    <div class="card-body">
+      <div class="card-text" style="white-space: pre-line">{{ event.description }}</div>
+    </div>
+    <div class="card-body">
+      <div class="card-text" style="white-space: pre-line">{{ event.start_time }} &nbsp; ~ &nbsp; {{ event.end_time }}</div>
+    </div>
+  </div>
+  <a href="{% url 'cal:event_edit' event.id %}" class="btn btn-sm btn-outline-secondary"><i class="fab fa-stack-exchange"></i> 수정</a>
+  {% endblock %}
+</div>
