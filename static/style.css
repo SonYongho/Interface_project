@@ -12281,3 +12281,8 @@ footer {
   margin-top: 10px;
   padding-bottom: 100px;
 }
+
+.title {
+  text-align: center;
+  margin: 10px;
+}

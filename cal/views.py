@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
+from django.contrib import messages
 from django.utils.safestring import mark_safe
 import calendar
 from django.contrib.auth.decorators import login_required
@@ -87,20 +88,12 @@ def event_modify(request, event_id):
         context = {'form': form}
         return render(request, 'cal/event_form.html', context)
 
-# @login_required(login_url='users:login')
-# def event(request, event_id=None):
-#     instance = Event()
-#     if event_id:
-#         instance = get_object_or_404(Event, pk=event_id)
-#     else:
-#         instance = Event()
+@login_required(login_url='users:login')
+def event_delete(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    if request.user != event.author:
+        messages.error(request, '삭제권한이 없습니다')
+        return redirect('board:detail', event_id=event.id)
 
-#     form = EventForm(request.POST or None, instance=instance)
-#     if request.POST and form.is_valid():
-#         event_form = form.save(commit=False)
-#         event_form.author = request.user
-#         event_form.save()
-#         return HttpResponseRedirect(reverse('cal:calendar'))
-    
-#     context = {'form': form}
-#     return render(request, 'cal/event.html', context)
+    event.delete()
+    return redirect('board:index')

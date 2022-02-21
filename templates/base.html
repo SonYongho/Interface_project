@@ -24,6 +24,8 @@
     {% include "navbar.html" %}
     <div id="layoutSidenav_content">
       <div id="body-content">
+        <h1 class="title">{% block title %}{% endblock %}</h1>
+        <hr />
         <main>{% block content %} {% endblock %}</main>
       </div>
 

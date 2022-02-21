@@ -1,33 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <style>
-.login{
-  text-align: center;
-  font-family: 'LeferiBaseType-BoldA';
-}
-.login{
-  text-align: center;
-}
-.loginform{
-  margin: 0 auto;
-}
-.sns-btn{
-  float: left;
-}
-.sns-btn button{
-  margin-top: 5px;
-  margin-left: 5px;
-  float: left;
-  text-align: center;
-}
-.signup{
-  font-family: 'LeferiBaseType-BoldA';
-}
+  .login {
+    text-align: center;
+    font-family: "LeferiBaseType-BoldA";
+  }
+  .login {
+    text-align: center;
+  }
+  .loginform {
+    margin: 0 auto;
+  }
+  .sns-btn {
+    float: left;
+  }
+  .sns-btn button {
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left;
+    text-align: center;
+  }
+  .signup {
+    font-family: "LeferiBaseType-BoldA";
+  }
 </style>
 
-<div class="login-form" style="margin-top: 10%;">
-  <h3 class="mb-5"><p class="text-danger login">LOGIN</p></h3>
+<div class="login-form" style="margin-top: 10%">
+  <h3 class="mb-5"><p class="text-dark login">LOGIN</p></h3>
   <form method="post" class="post-form" action="{% url 'users:login' %}">
     {% csrf_token %}
     <!-- 로그인 성공 후 이동되는 URL -->
@@ -53,14 +52,10 @@
         value="{{ form.password.value|default_if_none:'' }}"
       />
     </div>
-    <button type="submit" class="btn btn-danger col-12" style="margin-bottom: 10px;">로그인</button>
-    <p>아이디가 없으신가요? <a href="{% url 'users:signup' %}" style="text-decoration: none;" class="text-danger signup"> &nbsp; 회원가입</a></p>
-    <button class="btn btn-danger bg-light text-danger col-1"><i class="fab fa-facebook-f"></i></button>
-    <button class="btn btn-danger bg-light text-danger col-1"><i class="fab fa-google"></i></button>
-    <button class="btn btn-danger bg-light text-danger col-1"><i class="fab fa-linkedin-in"></i></button>
-    <button class="btn btn-danger bg-light text-danger col-1"><i class="fab fa-twitter"></i></button>
-    <div class="sns-btn col-6">
-    </div>
+    <button type="submit" class="btn btn-dark col-12" style="margin-bottom: 10px">로그인</button>
+    <p>
+      아이디가 없으신가요? <a href="{% url 'users:signup' %}" style="text-decoration: none" class="text-dark signup"> &nbsp; 회원가입</a>
+    </p>
   </form>
 </div>
 {% endblock %}
