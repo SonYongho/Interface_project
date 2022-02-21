@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="{{baseUrl}}/css/styles.css" rel="stylesheet" />
 
     <title>Scheduler</title>
   </head>
@@ -25,7 +24,7 @@
     {% include "navbar.html" %}
     <div id="layoutSidenav_content">
       <main>{% block content %} {% endblock %}</main>
-      <footer class="py-4 bg-light mt-auto">
+      <footer class="py-4 bg-light mt-auto footer">
         <div class="container-fluid px-4">
           <div class="d-flex align-items-center justify-content-between small">
             <div class="text-muted">Copyright &copy; reated by NongDamGom. All right Reserved</div>
