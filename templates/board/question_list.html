@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+<!-- -->
+{% block title %} Free Board {% endblock %} {% block content %}
+<!--오버라이딩 -->
+<div class="container my-3">
+  <div class="user-container my-3">
+    <table class="table  table-hover">
+      <thead>
+        <tr class="thead-dark">
+          <th style="width: 60px; text-align: center;">번호</th>
+          <th style="width: 700px; text-align: center;">제목</th>
+          <th style="text-align: center;">글쓴이</th>
+          <th style="width: 120px">작성일시</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if question_list %} {% for question in question_list %}
+        <tr>
+          <td style="text-align: center;">
+            <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 +1-->
+            {{ question.id }}
+          </td>
+          <td>
+            <a href="{% url 'board:detail' question.id %}"> {{ question.subject }} </a>
+            {% if question.answer_set.count > 0 %}
+            <span class="badge badge-pill badge-primary"> {{ question.answer_set.count }}</span>
+            {% endif %}
+          </td>
+          <td style="text-align: center;">{{ question.author.username}}</td>
+          <td>{{ question.create_date | date:'Y-m-d' }}</td>
+          <!-- H:i:s 시간-->
+        </tr>
+        {% endfor %} {% else %}
+        <tr>
+          <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <div class="clearfix">
+      {% comment %} footer 간격 넓히기 : clearfix, 같은 라인에 쓰기 : float {% endcomment %}
+      <div class="float-right">(총 : {{question_list.paginator.count}}건)</div>
+      <!-- 총 건에서 total_count 로 해도 됨 -->
+      <div class="float-left">
+        <a href="{% url 'board:question_create' %}" class="text-left btn btn-primary"><i class="far fa-comment-dots"></i> 질문 등록하기</a>
+      </div>
+    </div>
+
+    {% include 'pagination.html' with page_obj=question_list %}
+
+  </div>
+</div>
+{% endblock %}

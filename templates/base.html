@@ -1,0 +1,91 @@
+{% load static %} {% static "" as baseUrl %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      ,
+      maximum-scale="1.0,"
+      ,
+      user-scalable="no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+      rel="stylesheet"
+    />
+
+    <title>Scheduler</title>
+  </head>
+  <!-- static 경로에 대한 하드 코드 회피 static '스타일 파일 경로' -->
+
+  <body class="sb-nav-fixed">
+    {% include "navbar.html" %}
+    <div id="layoutSidenav_content">
+      <div id="body-content">
+        <h1 class="title">{% block title %}{% endblock %}</h1>
+        <hr />
+        <main>{% block content %} {% endblock %}</main>
+      </div>
+
+      <footer class="mt-5 py-4 bg-light">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">
+              Copyright &copy; reated by NongDamGom. All right Reserved
+            </div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{baseUrl}}/js/scripts.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{baseUrl}}/assets/demo/chart-area-demo.js"></script>
+    <script src="{{baseUrl}}/assets/demo/chart-bar-demo.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{baseUrl}}/js/datatables-simple-demo.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jQuery JS -->
+    <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+
+    <!-- java script -->
+    {% block script %}{% endblock %}
+  </body>
+</html>
