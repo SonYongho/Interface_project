@@ -1,17 +1,17 @@
-{% extends 'cal/cal_base.html' %} {% block title %} Schedule {% endblock %} 
-{% block content_side %}
+{% extends 'cal/cal_base.html' %} {% block title %} Schedule {% endblock %} {% block content_side %}
 <div class="clearfix">
-  <a class="btn btn-info left bg-info font-weight-bold" href="{% url 'cal:event_new' %}">
-    <i class="fa fa-solid fa-folder-plus"></i> NEW EVENT
-  </a>
-  <a class="btn btn-info right bg-info font-weight-bold" href="{% url 'cal:calendar' %}?{{ next_month }}">
-    NEXT MONTH 
-    <i class="fa fa-solid fa-arrow-right"></i>
-  </a>
-  <a class="btn btn-info right bg-info font-weight-bold" href="{% url 'cal:calendar' %}?{{ prev_month }}">
-    <i class="fa fa-solid fa-arrow-left"></i>
-     PRE MONTH
-  </a>
+  <a class="btn btn-dark right" href="{% url 'cal:calendar' %}?{{ next_month }}"> > </a>
+  <a class="btn btn-dark right" href="{% url 'cal:calendar' %}?{{ prev_month }}"> < </a>
+  <a class="btn btn-dark left" href="{% url 'cal:event_new' %}"> New Event </a>
 </div>
+<style>
+  li{
+    list-style: none;
+    
+  }
+  a{
+    text-decoration: none;
+  }
+</style>
 
 {{ calendar }} {% endblock %}

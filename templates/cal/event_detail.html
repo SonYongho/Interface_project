@@ -1,11 +1,7 @@
 {% extends 'cal/cal_base.html' %} {% block title %} Event {% endblock %} {% block content_side %}
 
-<div class="clearfix">
-  <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Calendar </a>
-</div>
-
 <div class="container my-3">
-  <h5>user : <a href="{% url 'users:profile' event.author.pk %}">{{ event.author.username }}</a></h5>
+  <div>user : <a href="{% url 'users:profile' event.author.pk %}">{{ event.author.username }}</a></div>
   <h2 class="border-bottom py-2">{{ event.title }}</h2>
   <div class="card my-3">
     <div class="card-body">
