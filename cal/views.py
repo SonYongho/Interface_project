@@ -93,7 +93,7 @@ def event_delete(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     if request.user != event.author:
         messages.error(request, '삭제권한이 없습니다')
-        return redirect('board:detail', event_id=event.id)
+        return redirect('cal:detail', event_id=event.id)
 
     event.delete()
-    return redirect('board:index')
+    return redirect('cal:calendar')
