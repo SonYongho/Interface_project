@@ -2,8 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from users.forms import UserForm
 from .models import User
-# from django.contrib.auth.models import User
-# from django.views.generic.detail import DetailView
 from django.views import View
 from .forms import UserForm, ProfileForm
 from django.contrib.auth.decorators import login_required
@@ -111,30 +109,3 @@ def follow(request, username):
         # follow_user.followers.add(user)
     return redirect('users:profile', pk=follow_user.pk)
 
-
-# @login_required
-# def ProfileUpdateView(request):
-#     if request.method == "POST":
-#         form = ProfileForm(request.POST)
-#         if form.is_valid():
-#             """
-#             현재 유저의 프로필을 가져오고
-#             받은 값으로 프로필을 갱신한다.
-#             """
-#             old_profile = request.user.profile
-#             old_profile.address = form.cleaned_data['address']
-#             old_profile.phone = form.cleaned_data['phone']
-#             old_profile.Mobile = form.cleaned_data['Mobile']
-#             old_profile.Git_url = form.cleaned_data['Git_url']
-#             old_profile.Twit_url = form.cleaned_data['Twit_url']
-#             old_profile.Ins_url = form.cleaned_data['Ins_url']
-#             old_profile.face_url = form.cleaned_data['face_url']
-
-#             old_profile.save()
-#             return redirect('users:profile', pk=request.user.pk)
-            
-#     elif request.method == "GET":
-#         form = ProfileForm(instance=request.user.profile)
-#         return render(request, 'common/profile_update.html', {
-#             'user_form': form,
-#         })
