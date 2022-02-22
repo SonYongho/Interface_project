@@ -12,7 +12,7 @@
       <tbody>
         {% for username in allusers %}
         <tr>
-          <td><a href="{% url 'users:profile' username.pk %}" style="text-decoration: none;" class="text-dark">{{ username }}</a></td>
+          <td><a href="{% url 'users:profile' username.pk %}" class="text-dark">{{ username }}</a></td>
           <td>{{ username.email }}</td>
           <td>{{ username.profile.address }}</td>
         </tr>
