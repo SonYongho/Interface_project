@@ -12,9 +12,9 @@
     </div>
   </div>
   {% if request.user == event.author %}
-  <a href="{% url 'cal:event_edit' event.id %}" class="btn btn-sm btn-outline-secondary"><i class="fab fa-stack-exchange"></i> 수정</a>
+  <a href="{% url 'cal:event_edit' event.id %}" class="btn btn-sm btn-outline-secondary"><i class="fab fa-stack-exchange"></i> Modify</a>
   <a href="#" class="delete btn btn-sm btn-outline-danger" data-uri="{% url 'cal:event_delete' event.id %}"
-    ><i class="far fa-trash-alt"></i> 삭제</a
+    ><i class="far fa-trash-alt"></i> Delete</a
   >
   {% endif %}
 </div>

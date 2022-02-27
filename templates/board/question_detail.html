@@ -32,10 +32,10 @@
       {% if request.user == question.author %}
       <div class="my-3">
         <a href="{% url 'board:question_modify' question.id %}" class="btn btn-sm btn-outline-secondary"><i
-            class="fab fa-stack-exchange"></i> 수정</a>
+            class="fab fa-stack-exchange"></i> Modify</a>
 
         <a href="#" class="delete btn btn-sm btn-outline-danger"
-          data-uri="{% url 'board:question_delete' question.id %}"><i class="far fa-trash-alt"></i> 삭제</a>
+          data-uri="{% url 'board:question_delete' question.id %}"><i class="far fa-trash-alt"></i> Delete</a>
       </div>
       {% endif %}
 
@@ -52,15 +52,15 @@
             {% endif %}
           </span>
           {% if request.user == comment.author %}
-          <a href="{% url 'board:comment_modify_question' comment.id  %} " class="small">수정</a>,
-          <a href="#" class="small delete" data-uri="{% url 'board:comment_delete_question' comment.id %}">삭제</a>
+          <a href="{% url 'board:comment_modify_question' comment.id  %} " class="small">Modify</a>,
+          <a href="#" class="small delete" data-uri="{% url 'board:comment_delete_question' comment.id %}">Delete</a>
           {% endif %}
         </div>
         {% endfor %}
       </div>
       {% endif %}
       <div>
-        <a href="{% url 'board:comment_create_question' question.id %}" class="small"><small>댓글 추가 ..</small></a>
+        <a href="{% url 'board:comment_create_question' question.id %}" class="small"><small>Add Comment ...</small></a>
       </div>
     </div>
     <!-- 질문 댓글 End -->
@@ -93,11 +93,11 @@
     <!-- 답변 수정 -->
     {% if request.user == answer.author %}
     <div class="my-3">
-      <a href="{% url 'board:answer_modify' answer.id %}" class="btn btn-sm btn-outline-secondary">수정</a>
+      <a href="{% url 'board:answer_modify' answer.id %}" class="btn btn-sm btn-outline-secondary">Modify</a>
 
       <!-- delete 클래스일 경우 자바스크립트 호출 -->
       <a href="#" class="delete btn btn-sm btn-outline-danger "
-        data-uri="{% url 'board:answer_delete' answer.id %}">삭제</a>
+        data-uri="{% url 'board:answer_delete' answer.id %}">Delete</a>
     </div>
     {% endif %}
 
@@ -115,15 +115,15 @@
           {% endif %}
         </span>
         {% if request.user == comment.author %}
-        <a href="{% url 'board:comment_modify_answer' comment.id %}" class="small">수정</a>,
-        <a href="#" class="small delete" data-uri="{% url 'board:comment_delete_answer' comment.id %}">삭제</a>
+        <a href="{% url 'board:comment_modify_answer' comment.id %}" class="small">Modify</a>,
+        <a href="#" class="small delete" data-uri="{% url 'board:comment_delete_answer' comment.id %}">Delete</a>
         {% endif %}
       </div>
       {% endfor %}
     </div>
     {% endif %}
     <div>
-      <a href="{% url 'board:comment_create_answer' answer.id %}" class="small"><small>댓글 추가 ..</small></a>
+      <a href="{% url 'board:comment_create_answer' answer.id %}" class="small"><small>Add Comment ...</small></a>
     </div>
 
   </div>
@@ -139,8 +139,8 @@
     <textarea {% if not user.is_authenticated %}disabled{% endif %} name="content" id="content" class="form-control"
       rows="15"></textarea>
   </div>
-  <button type="submit" class="btn btn-dark"><i class="fas fa-check"></i> 답변 등록 </button>
-  <a href="{% url 'board:index' %}" class="btn btn-dark"><i class="fas fa-undo"></i> 목록 보기 </a>
+  <button type="submit" class="btn btn-dark"><i class="fas fa-check"></i> Add answer </button>
+  <a href="{% url 'board:index' %}" class="btn btn-dark"><i class="fas fa-undo"></i> List </a>
 </form>
 </div>
 {% endblock %}

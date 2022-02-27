@@ -9,10 +9,10 @@
     <table class="table table table-hover">
       <thead>
         <tr class="thead-dark">
-          <th style="width: 60px">번호</th>
-          <th>제목</th>
-          <th>글쓴이</th>
-          <th style="width: 120px">작성일시</th>
+          <th style="width: 60px">index</th>
+          <th>subject</th>
+          <th>user</th>
+          <th style="width: 120px">time</th>
         </tr>
       </thead>
       <tbody>
@@ -34,13 +34,13 @@
         </tr>
         {% endfor %} {% else %}
         <tr>
-          <td colspan="3">질문이 없습니다.</td>
+          <td colspan="3">Not Question.</td>
         </tr>
         {% endif %}
       </tbody>
     </table>
     <div class="float-right">
-      <a href="{% url 'board:question_create' %}" class="text-left btn btn-dark"> 질문 등록하기</a>
+      <a href="{% url 'board:question_create' %}" class="text-left btn btn-dark"> Add Question</a>
     </div>
     {% include 'pagination.html' with page_obj=question_list %}
     <div class="clearfix">{% comment %} footer 간격 넓히기 : clearfix, 같은 라인에 쓰기 : float {% endcomment %}</div>
